@@ -54,7 +54,7 @@ Commits created entirely by automation (e.g., Dependabot, Renovate) without dire
 | :------ | :--- | :---------- |
 | 🤖      | `ci` | Added automatically by a bot/automation (e.g., Dependabot), not by direct user intervention |
 
-This pairing is configured directly in the automation tool itself (e.g., `commit-message.prefix` in `dependabot.yml`), not generated through this skill's workflow.
+This pairing is configured directly in the automation tool itself (e.g., `commit-message.prefix` in `dependabot.yml`), not generated through this skill's workflow. Without that config, Dependabot's own default format has no gitmoji at all, e.g. `build(deps): bump the production-dependencies group with 6 updates` — leave those as Dependabot writes them; don't reformat its commits by hand.
 
 ---
 
@@ -86,11 +86,20 @@ This pairing is configured directly in the automation tool itself (e.g., `commit
 Make a Next.js project for UI/UX and a FastAPI project for the AI backend. 
 ```
 
-### Feature addition
+### Feature addition (AI/agent)
 ```
-✨ feat(n8n): add n8n application
+✨ feat(agent): add Deep Agents example with OpenAI-compatible API
 
-Add n8n workflow automation application to the cluster.
+Wire up a Deep Agents example that talks to any OpenAI-compatible
+endpoint via uv-managed dependencies.
+```
+
+### Feature addition (web frontend)
+```
+✨ feat(vue): initialize Vue frontend and implement 1:1 parity with Next.js chat
+
+Port the existing Next.js chat UI to Vue so both frontends share the
+same feature set and API contract.
 ```
 
 ### Intentional functional configuration change
@@ -125,11 +134,12 @@ Fix three bugs in the git commit policy rule:
 Upgrade open-webui Helm chart to latest version.
 ```
 
-### Refactoring
+### Refactoring (web frontend)
 ```
-♻️ refactor(nfs): rename custom Helm chart with -jyje suffix and add health probes
+♻️ refactor(assets): reorganize logos into subdirectories
 
-Rename Helm chart directory and add health probe configurations.
+Group logo images by source/purpose instead of dumping them all into
+a single flat assets folder.
 ```
 
 ### Security
@@ -151,4 +161,20 @@ Correct "gitmodi" to "gitmoji" in documentation.
 📝 article(blog): add new post about kubernetes best practices
 
 Add a new blog post discussing kubernetes deployment strategies and best practices.
+```
+
+### Documentation
+```
+📄 docs(chart): add Korean translation of the chart README
+
+Add the Korean README as a twin of the English one so non-English
+users get the same install/config guidance.
+```
+
+### Build / CI
+```
+🔨 build(ci): bump ubuntu runner version to 26.04-arm
+
+Move workflows onto the arm runner image to match production hardware
+and pick up its faster cold-start time.
 ```

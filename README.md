@@ -1,14 +1,25 @@
-# skills
+<div align="center">
 
-Personal Claude Code skills, meant to live at `~/.claude/skills/` (one
-subdirectory per skill, symlinked in) so every project on this machine shares
-the same up-to-date version instead of drifting copies per repo.
+# jyje/skills
+
+<img width="150" src="https://raw.githubusercontent.com/jyje/profile/main/assets/img/logo.png" alt="jyje" title="jyje"/>
+
+🧠 Personal Claude Code skills, shared across every project on this machine
+
+[![GitHub Repo stars](https://img.shields.io/github/stars/jyje/skills?style=social)](https://github.com/jyje/skills)
+
+</div>
+
+Meant to live at `~/.claude/skills/` (one subdirectory per skill, symlinked
+in) so every project on this machine shares the same up-to-date version
+instead of drifting copies per repo.
 
 ## Skills
 
 | Skill | Purpose |
 | --- | --- |
 | [`git-commit-helper`](git-commit-helper/) | Generate commit messages following a consistent gitmoji + conventional-commit-ish format |
+| [`centered-readme`](centered-readme/) | Format a README's header as a centered hero block (title, logo, tagline, badges) |
 
 ## Usage
 
