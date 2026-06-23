@@ -54,7 +54,14 @@ Commits created entirely by automation (e.g., Dependabot, Renovate) without dire
 | :------ | :--- | :---------- |
 | 🤖      | `ci` | Added automatically by a bot/automation (e.g., Dependabot), not by direct user intervention |
 
-This pairing is configured directly in the automation tool itself (e.g., `commit-message.prefix` in `dependabot.yml`), not generated through this skill's workflow. Without that config, Dependabot's own default format has no gitmoji at all, e.g. `build(deps): bump the production-dependencies group with 6 updates` — leave those as Dependabot writes them; don't reformat its commits by hand.
+Configure this pairing directly in the automation tool itself, not by hand-editing bot commits after the fact. For Dependabot, set `commit-message` in `dependabot.yml` for every `package-ecosystem` entry:
+```yaml
+commit-message:
+  prefix: "🤖 ci"
+  prefix-development: "🤖 ci"
+  include: "scope"
+```
+This renders as `🤖 ci(deps): bump <package> from X to Y` for production dependencies and `🤖 ci(deps-dev): ...` for development ones (the `(scope)` comes from `include: "scope"`, not from manually typing a domain). Without this config, Dependabot's default has no gitmoji at all, e.g. `build(deps): bump the production-dependencies group with 6 updates` — that default is the bug to fix, not a format to tolerate.
 
 ---
 
