@@ -72,6 +72,10 @@ subcommand, flag, or model field exists — confirm it first:
 - Kubernetes: `kubectl exec <pod> -n <namespace> -c <container> -- ak --help`
   — confirm pod, namespace, and container name first with `kubectl get
   pods` / `kubectl describe pod`, don't guess a container name.
+- `ak --help` and `ak help <subcommand>` boot the full Django app before
+  printing anything — expect several seconds of JSON bootstrap log lines
+  (config load, DB connection, app imports) first. That's normal startup
+  noise, not a hang; the command list appears after it finishes booting.
 - API/model fields: inspect the relevant Admin API schema or `OPTIONS`
   response read-only before writing (`GET /api/v3/schema/` or `OPTIONS` on
   the target endpoint). Some Authentik versions expose computed/friendly
