@@ -21,6 +21,7 @@ instead of drifting copies per repo.
 | [`git-commit-helper`](git-commit-helper/) | Generate commit messages following a consistent gitmoji + conventional-commit-ish format |
 | [`centered-readme`](centered-readme/) | Format a README's header as a centered hero block (title, logo, tagline, badges) |
 | [`python-lint`](python-lint/) | Lint/format with ruff, type-check with ty, and run pytest before calling a Python change done |
+| [`authentik-container-admin`](authentik-container-admin/) | Administer Authentik from Kubernetes/Docker via Blueprints/Admin API/CLI before ever touching the browser UI |
 
 ## Usage
 
