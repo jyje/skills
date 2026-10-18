@@ -27,7 +27,34 @@ All commit messages must strictly follow this format:
 
 ---
 
-## 2. Gitmoji & Type Mapping
+## 2. Reusable Commit-Message Validator
+
+The `scripts/validate-commit-message.mjs` script implements the Gitmoji/type mapping and subject format in this skill. Run it directly against a Git commit-message file:
+
+```bash
+node /path/to/git-commit-helper/scripts/validate-commit-message.mjs .git/COMMIT_EDITMSG
+```
+
+A repository can reuse the validator from a thin `commit-msg` hook instead of copying validation logic into each project. For example, save this wrapper as that repository's `.githooks/commit-msg`:
+
+```sh
+#!/bin/sh
+set -eu
+skill_dir="${GIT_COMMIT_HELPER_SKILL:-$HOME/.claude/skills/git-commit-helper}"
+exec node "$skill_dir/scripts/validate-commit-message.mjs" "$1"
+```
+
+Then make the wrapper executable and configure the repository with `git config core.hooksPath .githooks`. The skill directory must be installed on that machine (or `GIT_COMMIT_HELPER_SKILL` must point to its checkout), and Node.js must be available. Git hooks are local to each repository; the shared script is the reusable module. Generated `Merge ` subjects are allowed through.
+
+Run the validator's self-tests with:
+
+```bash
+node --test /path/to/git-commit-helper/scripts/validate-commit-message.test.mjs
+```
+
+---
+
+## 3. Gitmoji & Type Mapping
 Only use the following approved types and emojis:
 
 | Gitmoji | Type       | Description |
@@ -68,7 +95,7 @@ This renders as `🤖 ci(deps): bump <package> from X to Y` for production depen
 
 ---
 
-## 3. Workflow Requirements
+## 4. Workflow Requirements
 1. **Analyze changes**: Review staged and unstaged changes to understand the scope and purpose of the work.
 2. **Split by concern**: If the changes span multiple semantically distinct concerns (e.g. different `Type`, different `Domain`, or otherwise unrelated purposes), split them into separate commits instead of bundling them into one. Stage and commit each concern individually, each with its own message following this policy. Do not split a single concern across multiple commits just to make diffs smaller.
 3. **Review history**: Search the most recent 10 commits in the `git log` to help determine the appropriate `Type` and `Domain`. After identifying a potential `Domain`, search up to 10 recent commits specifically for that domain to ensure consistency and gain context for writing the commit message.
@@ -81,14 +108,14 @@ This renders as `🤖 ci(deps): bump <package> from X to Y` for production depen
 
 ---
 
-## 4. Strict Constraints
+## 5. Strict Constraints
 - **Agent Autonomy**: You MUST NOT arbitrarily execute commit or push commands before the user approves. All execution must wait for explicit user consent.
 - **Language**: The commit message and any detailed explanations of changes MUST be in English only. Do NOT use Korean.
 - **Privacy & Security**: NEVER include local paths, sensitive environment variables, or other local/sensitive information in the commit messages or detailed descriptions.
 
 ---
 
-## 5. Examples
+## 6. Examples
 
 ### Initial commit
 ```
