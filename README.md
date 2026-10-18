@@ -2,7 +2,7 @@
 
 # jyje/skills
 
-<img width="150" src="https://raw.githubusercontent.com/jyje/profile/main/assets/img/logo.png" alt="jyje" title="jyje"/>
+<img width="150" src="https://raw.githubusercontent.com/jyje/profile/main/assets/icons/icon-192x192.png" alt="jyje" title="jyje"/>
 
 🧠 Personal Claude Code skills, shared across every project on this machine
 
